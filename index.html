@@ -36,18 +36,42 @@
             </div>
             <input class="task-input" type="text" placeholder="Add a task" />
             <button class="add-button">
-              <img src="./src/icones/add-icon.svg" alt="add icon" />
+              <img class="add-icon" src="./src/icones/add-icon.svg" alt="add icon" />
             </button>
           </div>
+
           <div class="todo-list">
             <div class="task">
               <div class="check-box"></div>
-              <div class="task-name">going to gym</div>
+              <div class="task-name-container">
+                <p class="task-name">going to gym</p>
+              </div>
+              <button class="delete-button">
+                <img src="./src/icones/garbage.svg" alt="delete button" />
+              </button>
+            </div>
+
+            <div class="task task-done">
+              <div class="check-box"></div>
+              <div class="task-name-container">
+                <p class="task-name">Design a responsive navbar with dropdown using HTML, CSS, and JavaScript.</p>
+              </div>
+              <button class="delete-button">
+                <img src="./src/icones/garbage.svg" alt="delete button" />
+              </button>
+            </div>
+
+            <div class="task">
+              <div class="check-box"></div>
+              <div class="task-name-container">
+                <p class="task-name">Build a dynamic form with validation.</p>
+              </div>
               <button class="delete-button">
                 <img src="./src/icones/garbage.svg" alt="delete button" />
               </button>
             </div>
           </div>
+
         </div>
       </main>
     </div>
