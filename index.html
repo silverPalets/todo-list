@@ -30,16 +30,24 @@
           <div class="date">Mar 23, 2025</div>
         </div>
         <div class="main-part">
-          <div class="add-task-bar">
+          <form class="add-task-bar js-add-task-form">
             <div class="paragraph-icon-wrapper">
               <img class="paragraph-icon" src="./src/icones/parapraph.svg" />
             </div>
-            <input class="task-input" type="text" placeholder="Add a task" />
-            <button class="add-button">
-              <img class="add-icon" src="./src/icones/add-icon.svg" alt="add icon" />
+            <input
+              class="task-input js-task-input"
+              type="text"
+              placeholder="Add a task"
+            />
+            <button type="submit" class="add-button js-add-button">
+              <img
+                class="add-icon"
+                src="./src/icones/add-icon.svg"
+                alt="add icon"
+              />
             </button>
-          </div>
-
+          </form>
+          <!-- ----------------------------------------------------------------- -->
           <div class="todo-list">
             <div class="task">
               <div class="check-box"></div>
@@ -54,7 +62,10 @@
             <div class="task task-done">
               <div class="check-box"></div>
               <div class="task-name-container">
-                <p class="task-name">Design a responsive navbar with dropdown using HTML, CSS, and JavaScript.</p>
+                <p class="task-name">
+                  Design a responsive navbar with dropdown using HTML, CSS, and
+                  JavaScript.
+                </p>
               </div>
               <button class="delete-button">
                 <img src="./src/icones/garbage.svg" alt="delete button" />
@@ -71,7 +82,6 @@
               </button>
             </div>
           </div>
-
         </div>
       </main>
     </div>
