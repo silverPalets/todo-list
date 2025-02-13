@@ -157,7 +157,6 @@ body .second-background {
 .todo-list .task {
   display: flex;
   align-items: start;
-  /* flex-wrap: wrap; */
   justify-content: center;
 
   margin-top: 10px;
@@ -177,6 +176,7 @@ body .second-background {
   color: var(--secondery-color);
   font-size: 18px;
   padding: 0 5px;
+  overflow-wrap: anywhere;
 }
 
 .task .delete-button {
