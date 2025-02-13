@@ -1,6 +1,66 @@
-export let Data = {
-  todo: [],
-  done: []
-};
+export class Data {
+  static todo = [];
+  static done = [];
+
+  static saveTask(taskName) {
+    let task = {
+      text: taskName,
+      id: Date.now().toString(),
+    };
+    Data.todo.push(task);
+    localStorage.setItem("todo", JSON.stringify(Data.todo));
+  }
+
+  static restoreTasks() {
+    this.todo = localStorage.getItem("todo")
+      ? JSON.parse(localStorage.getItem("todo"))
+      : [
+          {
+            text: "Drink water",
+            id: "1739461106928",
+          },
+          {
+            text: "do 10 Push-ups",
+            id: "1739461106929",
+          },
+        ];
+
+    this.done = localStorage.getItem("done")
+      ? JSON.parse(localStorage.getItem("done"))
+      : [
+          {
+            text: `Design a responsive navbar with dropdown using HTML, CSS, and
+                  JavaScript.`,
+            id: "1739461106930",
+          },
+        ];
+  }
+
+  static saveToLocalStorage() {
+    localStorage.setItem("todo", JSON.stringify(Data.todo));
+    localStorage.setItem("done", JSON.stringify(Data.done));
+  }
+
+  static addTaskToDone(taskId) {
+    this.todo.forEach((element, index) => {
+      if (element.id === taskId) {
+        console.log('addToTask part');
+        this.done.push(element);
+        this.todo.splice(index, 1);
+        this.saveToLocalStorage();
+      }
+    });
+  }
+
+  static removeTaskFromDone(taskId) {
+    this.done.forEach((element, index) => {
+      if (element.id === taskId) {
+        this.todo.push(element);
+        this.done.splice(index, 1);
+        this.saveToLocalStorage();
+      }
+    });
+  }
+}
 
 export default Data;
