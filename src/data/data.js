@@ -61,6 +61,24 @@ export class Data {
       }
     });
   }
+
+  static removeTask(taskId, taskStat) {
+    if (taskStat === "todo") {
+      this.todo.forEach((element, index) => {
+        if (element.id === taskId) {
+          this.todo.splice(index, 1);
+          this.saveToLocalStorage();
+        }
+      });
+    } else if ( taskStat === "done") {
+      this.done.forEach( (element, index) => {
+        if (element.id === taskId) {
+          this.done.splice(index, 1);
+          this.saveToLocalStorage();
+        }
+      });
+    }
+  }
 }
 
 export default Data;

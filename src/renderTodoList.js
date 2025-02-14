@@ -12,6 +12,7 @@ function renderTodoList() {
 
   addTask();
   compliteTask();
+  deleteListener();
 }
 
 function addTask() {
@@ -21,7 +22,7 @@ function addTask() {
     let taskName = document.querySelector(".js-task-input").value;
     document.querySelector(".js-task-input").value = "";
     if (taskName === "") return;
-    
+
     Data.saveTask(taskName);
     renderTodoList();
   });
@@ -33,7 +34,7 @@ function compliteTask() {
       let reTask = false;
       let taskId = checkBox.dataset.taskId;
 
-      let container = event.target.closest('.task'); 
+      let container = event.target.closest(".task");
       container.classList.forEach((className) => {
         if (className === "task-done") {
           reTask = true;
@@ -60,7 +61,7 @@ function renderTasks() {
         <div class="task-name-container" >
           <p class="task-name">${todo.text}</p>
         </div>
-        <button class="delete-button">
+        <button class="delete-button js-delete-button" data-task-id="${todo.id}" data-task-stat="todo">
           <img src="./src/icones/garbage.svg" alt="delete button" />
         </button>
       </div>
@@ -79,11 +80,20 @@ function renderDoneTasks() {
         <div class="task-name-container" >
           <p class="task-name">${todo.text}</p>
         </div>
-        <button class="delete-button">
+        <button class="delete-button js-delete-button" data-task-id="${todo.id}" data-task-stat="done">
           <img src="./src/icones/garbage.svg" alt="delete button" />
         </button>
       </div>
     `;
   });
   return todoListHTML;
+}
+
+function deleteListener() {
+  document.querySelectorAll(".js-delete-button").forEach((button) => {
+    button.addEventListener("click", () => {
+      Data.removeTask(button.dataset.taskId, button.dataset.taskStat);
+      renderTodoList();
+    });
+  });
 }
