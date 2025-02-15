@@ -13,7 +13,7 @@ function renderTodoList() {
   addTask();
   compliteTask();
   deleteListener();
-  searchPage();
+  changeFeature();
 }
 
 function addTask() {
@@ -123,9 +123,18 @@ function deleteListener() {
 //   }
 // }
 
-function searchPage() {
-  document.querySelector(".js-search-button").addEventListener("click", () => {
+function changeFeature() {
+  document.querySelector(".js-change-feature-button").addEventListener("click", () => {
+    document.querySelector(".js-change-feature-button").innerHTML = `
+      <img
+        class="add-icon"
+        src="./src/icones/add-icon.svg"
+        alt="search icon"
+      />
+    `;
     document.querySelector(".js-add-task-form").remove();
+    document.querySelector(".js-add-task-form");
+    
 
     let mainHtml = `
       <form action="" class="search-task-bar js-search-task-form">
@@ -150,5 +159,7 @@ function searchPage() {
   mainHtml += mainPart.innerHTML;
   
   mainPart.innerHTML = mainHtml;
+
+  document.querySelector('.js-todo-list').innerHTML = "";
   });
 }
