@@ -91,7 +91,7 @@ body .second-background {
   font-size: 16px;
 }
 
-.add-task-bar {
+.add-task-bar, .search-task-bar {
   margin-left: 90px;
   margin-right: 90px;
   margin-top: 30px;
@@ -100,7 +100,7 @@ body .second-background {
   align-items: center;
 }
 
-.add-task-bar .paragraph-icon-wrapper {
+.add-task-bar .paragraph-icon-wrapper, .search-task-bar .paragraph-icon-wrapper {
   background-color: var(--second-accent-color);
   width: 50px;
   height: 50px;
@@ -110,14 +110,14 @@ body .second-background {
   /* padding: 10px; */
 }
 
-.add-task-bar .paragraph-icon {
+.add-task-bar .paragraph-icon, .search-task-bar .paragraph-icon {
   width: 50%;
   height: 50%;
   object-fit: cover;
   margin: 0 auto;
 }
 
-.add-task-bar .task-input {
+.add-task-bar .task-input, .search-task-bar .search-input {
   flex: 1;
   height: 50px;
   border: none;
@@ -126,12 +126,12 @@ body .second-background {
   font-size: 16px;
 }
 
-.add-task-bar .task-input:focus {
+.add-task-bar .task-input:focus, .search-task-bar .search-input:focus {
   color: white;
   outline: none;
 }
 
-.add-task-bar .add-button {
+.add-task-bar .add-button, .search-task-bar .search-button {
   background-color: rgba(0, 0, 0, 0);
   padding: none;
   height: 50px;
@@ -142,7 +142,7 @@ body .second-background {
   justify-content: center;
 }
 
-.add-task-bar .add-icon {
+.add-task-bar .add-icon, .search-task-bar .search-icon {
   width: 75%;
   height: 75%;
 }

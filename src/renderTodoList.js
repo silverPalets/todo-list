@@ -6,13 +6,14 @@ renderTodoList();
 function renderTodoList() {
   let todoList = document.querySelector(".js-todo-list");
   let todoListHTML = " ";
-  todoListHTML += renderTasks();
-  todoListHTML += renderDoneTasks();
+  todoListHTML += renderTasks(Data.todo);
+  todoListHTML += renderDoneTasks(Data.done);
   todoList.innerHTML = todoListHTML;
 
   addTask();
   compliteTask();
   deleteListener();
+  searchPage();
 }
 
 function addTask() {
@@ -52,9 +53,9 @@ function compliteTask() {
   });
 }
 
-function renderTasks() {
+function renderTasks(todoTasks) {
   let todoListHTML = "";
-  Data.todo.forEach((todo) => {
+  todoTasks.forEach((todo) => {
     todoListHTML += `
       <div class="task">
         <div class="check-box js-check-box" data-task-id="${todo.id}"></div>
@@ -71,9 +72,9 @@ function renderTasks() {
   return todoListHTML;
 }
 
-function renderDoneTasks() {
+function renderDoneTasks(doneTasks) {
   let todoListHTML = "";
-  Data.done.forEach((todo) => {
+  doneTasks.forEach((todo) => {
     todoListHTML += `
       <div class="task task-done">
         <div class="check-box js-check-box" data-task-id="${todo.id}"></div>
@@ -95,5 +96,59 @@ function deleteListener() {
       Data.removeTask(button.dataset.taskId, button.dataset.taskStat);
       renderTodoList();
     });
+  });
+}
+
+// findTask(taskWord) {
+//   let matchTodo = [];
+//   let matchDone = [];
+
+//   let todoLength = Data.todo.length();
+//   let doneLength = Data.done.length();
+//   let maxLength= todoLength > doneLength? todoLength : doneLength;
+
+//   for(let i = 0; i < maxLength; i++) {
+//     if ( i < todoLength) {
+//       let element = Data.todo[i];
+//       if (element.includes(taskWord)) {
+//         matchTodo.push(element);
+//       }
+//     }
+//     if (i < doneLength) {
+//       let element = Data.done[i];
+//       if (element.includes(taskWord)) {
+//         matchDone.push(element);
+//       }
+//     }
+//   }
+// }
+
+function searchPage() {
+  document.querySelector(".js-search-button").addEventListener("click", () => {
+    document.querySelector(".js-add-task-form").remove();
+
+    let mainHtml = `
+      <form action="" class="search-task-bar js-search-task-form">
+        <div class="paragraph-icon-wrapper">
+          <img class="paragraph-icon" src="./src/icones/parapraph.svg" />
+        </div>
+        <input
+          class="search-input js-search-input"
+          type="text"
+          placeholder="Search a word"
+        />
+        <button type="submit" class="search-button js-search-button">
+          <img
+            class="search-icon"
+            src="./src/icones/fluent_search-28-regular.svg"
+            alt="add icon"
+          />
+        </button>
+      </form>
+    `;
+  let mainPart = document.querySelector(".js-main-part");
+  mainHtml += mainPart.innerHTML;
+  
+  mainPart.innerHTML = mainHtml;
   });
 }
