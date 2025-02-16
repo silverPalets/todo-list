@@ -44,7 +44,7 @@ export class Data {
   static addTaskToDone(taskId) {
     this.todo.forEach((element, index) => {
       if (element.id === taskId) {
-        console.log('addToTask part');
+        console.log("addToTask part");
         this.done.push(element);
         this.todo.splice(index, 1);
         this.saveToLocalStorage();
@@ -70,14 +70,44 @@ export class Data {
           this.saveToLocalStorage();
         }
       });
-    } else if ( taskStat === "done") {
-      this.done.forEach( (element, index) => {
+    } else if (taskStat === "done") {
+      this.done.forEach((element, index) => {
         if (element.id === taskId) {
           this.done.splice(index, 1);
           this.saveToLocalStorage();
         }
       });
     }
+  }
+
+  static findTask(taskWord) {
+    let todo = [];
+    let done = [];
+    this.restoreTasks();
+    
+    let todoLength = this.todo.length;
+    let doneLength = this.done.length;
+    let maxLength = todoLength > doneLength ? todoLength : doneLength;
+
+    for (let i = 0; i < maxLength; i++) {
+      if (i < todoLength) {
+        let element = this.todo[i];
+        if (element.text.includes(taskWord)) {
+          todo.push(element);
+        }
+      }
+      if (i < doneLength) {
+        let element = this.done[i];
+        if (element.text.includes(taskWord)) {
+          done.push(element);
+        }
+      }
+    }
+
+    return {
+      todo,
+      done,
+    };
   }
 }
 

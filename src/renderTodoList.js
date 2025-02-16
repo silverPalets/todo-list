@@ -1,9 +1,9 @@
 import Data from "./data/data.js";
 
 Data.restoreTasks();
-renderTodoList();
+renderTodoList(Data);
 
-function renderTodoList() {
+function renderTodoList(Data) {
   let todoList = document.querySelector(".js-todo-list");
   let todoListHTML = " ";
   todoListHTML += renderTasks(Data.todo);
@@ -13,7 +13,7 @@ function renderTodoList() {
   addTask();
   compliteTask();
   deleteListener();
-  searchPage();
+  changeFeature();
 }
 
 function addTask() {
@@ -25,7 +25,7 @@ function addTask() {
     if (taskName === "") return;
 
     Data.saveTask(taskName);
-    renderTodoList();
+    renderTodoList(Data);
   });
 }
 
@@ -99,34 +99,27 @@ function deleteListener() {
   });
 }
 
-// findTask(taskWord) {
-//   let matchTodo = [];
-//   let matchDone = [];
+function changeFeature() {
+  document.querySelector(".js-change-feature-button").addEventListener("click", () => {
+    document.querySelector(".js-change-feature-button").innerHTML = `
+      <img
+        class="add-icon"
+        src="./src/icones/add-icon.svg"
+        alt="search icon"
+      />
+    `;
+    
+    let mainPart = document.querySelector(".js-main-part");
+    let addStage = mainPart.querySelector(".js-add-task-form");
+    
+    if (addStage) {
+      console.log('was in add stage');
+    } else {
+      console.log('was in search stage');
+    }
 
-//   let todoLength = Data.todo.length();
-//   let doneLength = Data.done.length();
-//   let maxLength= todoLength > doneLength? todoLength : doneLength;
-
-//   for(let i = 0; i < maxLength; i++) {
-//     if ( i < todoLength) {
-//       let element = Data.todo[i];
-//       if (element.includes(taskWord)) {
-//         matchTodo.push(element);
-//       }
-//     }
-//     if (i < doneLength) {
-//       let element = Data.done[i];
-//       if (element.includes(taskWord)) {
-//         matchDone.push(element);
-//       }
-//     }
-//   }
-// }
-
-function searchPage() {
-  document.querySelector(".js-search-button").addEventListener("click", () => {
     document.querySelector(".js-add-task-form").remove();
-
+    
     let mainHtml = `
       <form action="" class="search-task-bar js-search-task-form">
         <div class="paragraph-icon-wrapper">
@@ -146,9 +139,30 @@ function searchPage() {
         </button>
       </form>
     `;
-  let mainPart = document.querySelector(".js-main-part");
+  
   mainHtml += mainPart.innerHTML;
   
   mainPart.innerHTML = mainHtml;
+  searchButtonListener();
+
+  document.querySelector('.js-todo-list').innerHTML = "";
   });
+}
+
+
+function searchButtonListener() {
+  let searchButton = document.querySelector('.js-search-button');
+  if (searchButton) {
+    searchButton.addEventListener('click', (e) => {
+      e.preventDefault();
+      
+      let searchInput = document.querySelector('.js-search-input');
+      let searchValue = searchInput.value;
+      searchInput.value = "";
+
+      let resoults = Data.findTask(searchValue);
+
+      renderTodoList(resoults);
+    });
+  }
 }

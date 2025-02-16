@@ -65,7 +65,7 @@ body .second-background {
   font-weight: 600;
 }
 
-.date-and-search-wrapper .search-button {
+.date-and-search-wrapper .change-feature-button {
   background-color: rgba(0, 0, 0, 0);
   border: solid;
   border-width: 2px;
@@ -81,7 +81,7 @@ body .second-background {
   cursor: pointer;
 }
 
-.search-button .search-icon {
+.change-feature-button .search-icon {
   width: 22px;
 }
 
