@@ -25,7 +25,7 @@ function addTask() {
     if (taskName === "") return;
 
     Data.saveTask(taskName);
-    renderTodoList();
+    renderTodoList(Data);
   });
 }
 
@@ -99,35 +99,6 @@ function deleteListener() {
   });
 }
 
-findTask(taskWord) {
-  let matchTodo = [];
-  let matchDone = [];
-
-  let todoLength = Data.todo.length();
-  let doneLength = Data.done.length();
-  let maxLength= todoLength > doneLength? todoLength : doneLength;
-
-  for(let i = 0; i < maxLength; i++) {
-    if ( i < todoLength) {
-      let element = Data.todo[i];
-      if (element.includes(taskWord)) {
-        matchTodo.push(element);
-      }
-    }
-    if (i < doneLength) {
-      let element = Data.done[i];
-      if (element.includes(taskWord)) {
-        matchDone.push(element);
-      }
-    }
-  }
-
-  return {
-    matchTodo,
-    matchDone
-  }
-}
-
 function changeFeature() {
   document.querySelector(".js-change-feature-button").addEventListener("click", () => {
     document.querySelector(".js-change-feature-button").innerHTML = `
@@ -184,7 +155,14 @@ function searchButtonListener() {
   if (searchButton) {
     searchButton.addEventListener('click', (e) => {
       e.preventDefault();
-      console.log('lets search');
+      
+      let searchInput = document.querySelector('.js-search-input');
+      let searchValue = searchInput.value;
+      searchInput.value = "";
+
+      let resoults = Data.findTask(searchValue);
+
+      renderTodoList(resoults);
     });
   }
 }
