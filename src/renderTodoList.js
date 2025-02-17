@@ -2,6 +2,10 @@ import Data from "./data/data.js";
 
 Data.restoreTasks();
 renderTodoList(Data);
+addTask();
+compliteTask();
+deleteListener();
+changeFeature();
 
 function renderTodoList(Data) {
   let todoList = document.querySelector(".js-todo-list");
@@ -9,11 +13,6 @@ function renderTodoList(Data) {
   todoListHTML += renderTasks(Data.todo);
   todoListHTML += renderDoneTasks(Data.done);
   todoList.innerHTML = todoListHTML;
-
-  addTask();
-  compliteTask();
-  deleteListener();
-  changeFeature();
 }
 
 function addTask() {
@@ -107,7 +106,6 @@ function changeFeature() {
   changeFeatureButton.addEventListener("click", () => {
     let mainPart = document.querySelector(".js-main-part");
     let toSearchStage = mainPart.querySelector(".js-add-task-form");
-
     if (toSearchStage) {
       document.querySelector(".js-change-feature-button").innerHTML = `
           <img
