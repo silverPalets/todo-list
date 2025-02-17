@@ -2,9 +2,6 @@ import Data from "./data/data.js";
 
 Data.restoreTasks();
 renderTodoList(Data);
-addTask();
-compliteTask();
-deleteListener();
 changeFeature();
 
 function renderTodoList(Data) {
@@ -13,6 +10,10 @@ function renderTodoList(Data) {
   todoListHTML += renderTasks(Data.todo);
   todoListHTML += renderDoneTasks(Data.done);
   todoList.innerHTML = todoListHTML;
+
+  addTask();
+  compliteTask();
+  deleteListener();
 }
 
 function addTask() {
@@ -45,10 +46,10 @@ function compliteTask() {
 
       if (!reTask) {
         Data.addTaskToDone(taskId);
-        renderTodoList();
+        renderTodoList(Data);
       } else {
         Data.removeTaskFromDone(taskId);
-        renderTodoList();
+        renderTodoList(Data);
       }
     });
   });
@@ -95,7 +96,7 @@ function deleteListener() {
   document.querySelectorAll(".js-delete-button").forEach((button) => {
     button.addEventListener("click", () => {
       Data.removeTask(button.dataset.taskId, button.dataset.taskStat);
-      renderTodoList();
+      renderTodoList(Data);
     });
   });
 }

@@ -44,7 +44,6 @@ export class Data {
   static addTaskToDone(taskId) {
     this.todo.forEach((element, index) => {
       if (element.id === taskId) {
-        console.log("addToTask part");
         this.done.push(element);
         this.todo.splice(index, 1);
         this.saveToLocalStorage();
