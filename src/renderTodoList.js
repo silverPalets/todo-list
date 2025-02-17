@@ -18,15 +18,17 @@ function renderTodoList(Data) {
 
 function addTask() {
   let taskInput = document.querySelector(".js-add-task-form");
-  taskInput.addEventListener("submit", (e) => {
-    e.preventDefault();
-    let taskName = document.querySelector(".js-task-input").value;
-    document.querySelector(".js-task-input").value = "";
-    if (taskName === "") return;
+  if (taskInput) {
+    taskInput.addEventListener("submit", (e) => {
+      e.preventDefault();
+      let taskName = document.querySelector(".js-task-input").value;
+      document.querySelector(".js-task-input").value = "";
+      if (taskName === "") return;
 
-    Data.saveTask(taskName);
-    renderTodoList(Data);
-  });
+      Data.saveTask(taskName);
+      renderTodoList(Data);
+    });
+  }
 }
 
 function compliteTask() {
@@ -100,63 +102,95 @@ function deleteListener() {
 }
 
 function changeFeature() {
-  document.querySelector(".js-change-feature-button").addEventListener("click", () => {
-    document.querySelector(".js-change-feature-button").innerHTML = `
-      <img
-        class="add-icon"
-        src="./src/icones/add-icon.svg"
-        alt="search icon"
-      />
-    `;
-    
+  let changeFeatureButton = document.querySelector(".js-change-feature-button");
+
+  changeFeatureButton.addEventListener("click", () => {
     let mainPart = document.querySelector(".js-main-part");
-    let addStage = mainPart.querySelector(".js-add-task-form");
-    
-    if (addStage) {
-      console.log('was in add stage');
-    } else {
-      console.log('was in search stage');
-    }
+    let toSearchStage = mainPart.querySelector(".js-add-task-form");
 
-    document.querySelector(".js-add-task-form").remove();
-    
-    let mainHtml = `
-      <form action="" class="search-task-bar js-search-task-form">
-        <div class="paragraph-icon-wrapper">
-          <img class="paragraph-icon" src="./src/icones/parapraph.svg" />
-        </div>
-        <input
-          class="search-input js-search-input"
-          type="text"
-          placeholder="Search a word"
-        />
-        <button type="submit" class="search-button js-search-button">
+    if (toSearchStage) {
+      document.querySelector(".js-change-feature-button").innerHTML = `
           <img
-            class="search-icon"
-            src="./src/icones/fluent_search-28-regular.svg"
-            alt="add icon"
+            class="add-icon"
+            src="./src/icones/add-icon.svg"
+            alt="search icon"
           />
-        </button>
-      </form>
-    `;
-  
-  mainHtml += mainPart.innerHTML;
-  
-  mainPart.innerHTML = mainHtml;
-  searchButtonListener();
+        `;
 
-  document.querySelector('.js-todo-list').innerHTML = "";
+      document.querySelector(".js-add-task-form").remove();
+
+      let mainHtml = `
+        <form action="" class="search-task-bar js-search-task-form">
+          <div class="paragraph-icon-wrapper">
+            <img class="paragraph-icon" src="./src/icones/parapraph.svg" />
+          </div>
+          <input
+            class="search-input js-search-input"
+            type="text"
+            placeholder="Search a word"
+          />
+          <button type="submit" class="search-button js-search-button">
+            <img
+              class="search-icon"
+              src="./src/icones/fluent_search-28-regular.svg"
+              alt="add icon"
+            />
+          </button>
+        </form>
+      `;
+
+      mainHtml += mainPart.innerHTML;
+
+      mainPart.innerHTML = mainHtml;
+      searchButtonListener();
+      document.querySelector(".js-todo-list").innerHTML = "";
+    } else {
+      document.querySelector(".js-change-feature-button").innerHTML = `
+          <img
+            class="add-icon"
+            src="./src/icones/fluent_search-28-regular.svg
+            "
+            alt="search icon"
+          />
+      `;
+
+      document.querySelector(".js-search-task-form").remove();
+
+      let mainHtml = `
+        <form class="add-task-bar js-add-task-form">
+          <div class="paragraph-icon-wrapper">
+            <img class="paragraph-icon" src="./src/icones/parapraph.svg" />
+          </div>
+          <input
+            class="task-input js-task-input"
+            type="text"
+            placeholder="Add a task"
+          />
+          <button type="submit" class="add-button js-add-button">
+            <img
+              class="add-icon"
+              src="./src/icones/add-icon.svg"
+              alt="add icon"
+            />
+          </button>
+        </form>
+      `;
+
+      mainHtml += mainPart.innerHTML;
+      mainPart.innerHTML = mainHtml;
+
+      renderTodoList(Data);
+    }
   });
 }
 
-
 function searchButtonListener() {
-  let searchButton = document.querySelector('.js-search-button');
+  let searchButton = document.querySelector(".js-search-button");
   if (searchButton) {
-    searchButton.addEventListener('click', (e) => {
+    searchButton.addEventListener("click", (e) => {
       e.preventDefault();
-      
-      let searchInput = document.querySelector('.js-search-input');
+
+      let searchInput = document.querySelector(".js-search-input");
       let searchValue = searchInput.value;
       searchInput.value = "";
 
