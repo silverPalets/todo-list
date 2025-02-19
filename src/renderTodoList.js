@@ -2,6 +2,7 @@ import Data from "./data/data.js";
 
 Data.restoreTasks();
 renderTodoList(Data);
+setInterval(displayTime, 1000);
 changeFeature();
 
 function renderTodoList(Data) {
@@ -198,4 +199,12 @@ function searchButtonListener() {
       renderTodoList(resoults);
     });
   }
+}
+
+function displayTime() {
+  let timeTag = document.querySelector(".js-time");
+  const momment = require("moment");
+  const timeFormat = "H:m:s";
+  let currentMoment = momment().format(timeFormat);
+  timeTag.innerHTML = currentMoment;
 }
