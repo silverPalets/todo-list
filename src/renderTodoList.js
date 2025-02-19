@@ -204,7 +204,7 @@ function searchButtonListener() {
 function displayTime() {
   let timeTag = document.querySelector(".js-time");
   const momment = require("moment");
-  const timeFormat = "H:m:s";
+  const timeFormat = "HH:mm:ss";
   let currentMoment = momment().format(timeFormat);
   timeTag.innerHTML = currentMoment;
 }
