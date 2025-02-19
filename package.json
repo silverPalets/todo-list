@@ -1,0 +1,23 @@
+{
+  "name": "todo-list",
+  "version": "1.0.0",
+  "description": "A simple todo list.",
+  "homepage": "https://github.com/silverPalets/todo-list#readme",
+  "bugs": {
+    "url": "https://github.com/silverPalets/todo-list/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/silverPalets/todo-list.git"
+  },
+  "license": "GPL-3.0",
+  "author": "silverPalets",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "moment": "^2.30.1"
+  }
+}

@@ -45,24 +45,38 @@ body .second-background {
 .date-and-search-wrapper {
   margin-top: 60px;
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
   align-items:center;
-  flex-direction: column;
-
   margin-left: 90px;
   margin-right: 90px;
+  
+}
+
+.date-and-search-wrapper .time {
+  color: var(--secondery-color);
+  font-size: 22px;
+  width: 100px;
+  font-weight: bold;
 }
 
 .date-and-search-wrapper .day-and-search {
   display: flex;
+  flex: 1;
   align-items: center;
   justify-content: center;
+  color: var(--secondery-color);
+  flex-direction: column;
 }
 
 .day-and-search .day {
-  color: var(--secondery-color);
   font-size: 48px;
   font-weight: 600;
+}
+
+.date-and-search-wrapper .search-wrapper {
+  width: 100px;
+  display: flex;
+  justify-content: end;
 }
 
 .date-and-search-wrapper .change-feature-button {
@@ -76,8 +90,8 @@ body .second-background {
   display: flex;
   justify-content: center;
   align-items: center;
-  position:absolute;
-  right: 90px;
+  /* position:absolute; */
+  /* right: 90px; */
   cursor: pointer;
 }
 
