@@ -56,7 +56,6 @@ body .second-background {
   color: var(--secondery-color);
   font-size: 22px;
   width: 100px;
-  font-weight: bold;
 }
 
 .date-and-search-wrapper .day-and-search {

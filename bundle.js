@@ -5822,7 +5822,7 @@ var _data = _interopRequireDefault(require("./data/data.js"));
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default": e }; }
 _data["default"].restoreTasks();
 renderTodoList(_data["default"]);
-setInterval(displayTime, 1000);
+displayTime();
 changeFeature();
 function renderTodoList(Data) {
   var todoList = document.querySelector(".js-todo-list");
@@ -5927,11 +5927,13 @@ function searchButtonListener() {
   }
 }
 function displayTime() {
-  var timeTag = document.querySelector(".js-time");
-  var momment = require("moment");
-  var timeFormat = "H:m:s";
-  var currentMoment = momment().format(timeFormat);
-  timeTag.innerHTML = currentMoment;
+  setInterval(function () {
+    var timeTag = document.querySelector(".js-time");
+    var momment = require("moment");
+    var timeFormat = "HH:mm:ss";
+    var currentMoment = momment().format(timeFormat);
+    timeTag.innerHTML = currentMoment;
+  }, '1000');
 }
 
 },{"./data/data.js":2,"moment":1}]},{},[3,2]);
